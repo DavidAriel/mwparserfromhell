@@ -49,11 +49,41 @@ PARSER_BLACKLIST = [
     "nowiki", "pre", "score", "section", "source", "syntaxhighlight",
     "templatedata", "timeline"
 ]
-
+VISIBLE_TAGS = [
+'i', 'b'
+]
 INVISIBLE_TAGS = [
     # enwiki extensions @ 2013-06-28
     "categorytree", "gallery", "imagemap", "inputbox", "math", "score",
-    "section", "templatedata", "timeline"
+    "section", "templatedata", "timeline",
+    'categorytree',
+    'ce',
+    'chem',
+    'charinsert',
+    'graph',
+    'hiero',
+    'imagemap',
+    'indicator',
+    'inputbox',
+    'math',
+    'mat',
+    'chem',
+    'poem',
+    'ref',
+    'references',
+    'score',
+    'table',
+    'section',
+    'syntaxhighlight',
+    'templatedata',
+    'timeline',
+    'gallery',
+    'includeonly',
+    'noinclude',
+    'nowiki',
+    'onlyinclude',
+    'pre'
+
 ]
 
 # [mediawiki/core.git]/includes/Sanitizer.php @ 87a0aef762
@@ -77,7 +107,8 @@ def is_parsable(tag):
 
 def is_visible(tag):
     """Return whether or not the given *tag* contains visible text."""
-    return tag.lower() not in INVISIBLE_TAGS
+    return tag.lower() in VISIBLE_TAGS
+    # return tag.lower() not in INVISIBLE_TAGS
 
 def is_single(tag):
     """Return whether or not the given *tag* can exist without a close tag."""

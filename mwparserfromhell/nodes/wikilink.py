@@ -48,6 +48,11 @@ class Wikilink(Node):
 
     def __strip__(self, **kwargs):
         if self.text is not None:
+            title = self.title.strip_code(**kwargs)
+            if title.startswith('File:') or \
+               title.startswith('Image:') or \
+               title.startswith('Media:'):
+                return None
             return self.text.strip_code(**kwargs)
         return self.title.strip_code(**kwargs)
 
